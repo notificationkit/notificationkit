@@ -1,0 +1,372 @@
+﻿@using NotificationKit.Models
+
+<div class="form-group well">
+    <fieldset>
+        <legend>PLATFORMS</legend>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Windows<br />(Notification Type)</label>
+                </div>
+                <div class="col-md-10">
+              
+                    <input class="aux-radio" type="radio" name="schedule_windows" value="0" data-bind="checked: windows" id="schedule_windows_off" /><label for="schedule_windows_off">Off</label>
+              
+              
+                    <input class="aux-radio" type="radio" name="schedule_windows" value="@Payloads.Windows.Badge" data-bind="checked: windows" id="schedule_windows_badge" /><label for="schedule_windows_badge">Badge</label>
+
+
+                    <input class="aux-radio" type="radio" name="schedule_windows" value="@Payloads.Windows.Tile" data-bind="checked: windows" id="schedule_windows_tile" /><label for="schedule_windows_tile">Tile</label>
+                    <input class="aux-radio" type="radio" name="schedule_windows" value="@Payloads.Windows.Toast" data-bind="checked: windows" id="schedule_windows_toast" /><label for="schedule_windows_toast">Toast</label>
+</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Windows Phone<br />(Notification Type)</label>
+                </div>
+                <div class="col-md-10">
+               
+                    <input class="aux-radio" type="radio" name="schedule_windowsPhone" value="0" data-bind="checked: windowsPhone" id="schedule_windowsphone_off" /><label for="schedule_windowsphone_off">Off</label>
+                    <input class="aux-radio" type="radio" name="schedule_windowsPhone" value="@Payloads.WindowsPhone.Tile" data-bind="checked: windowsPhone" id="schedule_windowsphone_tile" /><label for="schedule_windowsphone_tile">Tile</label>
+                    <input class="aux-radio" type="radio" name="schedule_windowsPhone" value="@Payloads.WindowsPhone.Toast" data-bind="checked: windowsPhone" id="schedule_windowsphone_toast" /><label for="schedule_windowsphone_toast"> Toast</label>
+
+</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>iOS</label>
+                </div>
+                <div class="col-md-10">
+              
+                    <input class="aux-radio" type="radio" name="schedule_ios" value="0" data-bind="checked: ios" id="schedule_ios_off"  /><label for="schedule_ios_off">Off</label>
+         
+                    <input class="aux-radio" type="radio" name="schedule_ios" value="@Payloads.Apple.Alert" data-bind="checked: ios" id="schedule_ios_on"  /><label for="schedule_ios_on">On</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Android</label>
+                </div>
+                <div class="col-md-10">
+               
+                    <input class="aux-radio" type="radio" name="schedule_android" value="0" data-bind="checked: android" id="schedule_android_off" /><label for="schedule_android_off">Off</label> 
+            
+                    <input class="aux-radio" type="radio" name="schedule_android" value="@Payloads.Android.Message" data-bind="checked: android" id="schedule_android_on" /> <label for="schedule_android_on">On</label>
+
+</div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group well">
+    <fieldset>
+        <legend>TAGS</legend>
+        <div class="row">
+            <div class=" col-xs-2 ">
+
+            </div>
+            <div class="col-xs-10 text-center">
+                <div class="col-sm-2">
+                    <label>Key</label>
+                </div>
+                <div class="col-sm-4">
+                    <label>Values</label>
+                </div>
+                <div class="col-sm-2">
+                    <label>Exclude</label>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+            </div>
+            </div>
+            <!-- ko foreach: tags -->
+            <div class="row">
+                <div class="col-xs-2 text-center">
+                    <button style="margin:2px" class="btn btn-warning" data-bind="click: $parent.deleteTag">
+                      Delete
+                    </button>
+            </div>
+           <div class="col-xs-10" style="vertical-align:bottom">
+
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" data-bind="value: key" placeholder="KEY" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" data-bind="value: values" placeholder="VALUE" />
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <input type="checkbox" class="aux-checkbox" data-bind="checked: exclude" placeholder="EXCLUDE" />
+                    </div>
+                    <div class="col-sm-4">
+
+                    </div>
+                </div>
+                </div>
+            <!-- /ko -->
+            <div class="row">
+                <div class="col-xs-2 text-center">
+                    <button style ="margin:2px" class="btn btn-success" data-bind="click: addTag">
+                        Add
+                    </button>
+                </div>
+                <div class="col-xs-10"></div>
+            </div>
+    </fieldset>
+</div>
+
+<div class="form-group well">
+    <fieldset>
+        <legend>MESSAGE</legend>
+        <input type="text" class="form-control" data-bind="value: message" placeholder="MESSAGE" />
+    </fieldset>
+</div>
+
+<div class="form-group form-inline well">
+    <fieldset>
+        <legend>SCHEDULED ON</legend>
+        <div class="row">
+            <div class="col-sm-2">
+                <input type="text" class="form-control date" data-bind="value: scheduleDate" />
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control time" data-bind="value: scheduleTime" />
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" data-bind="value: scheduleTimeZone">
+                    <option value="-12:00">UTC -12</option>
+                    <option value="-11:00">UTC -11</option>
+                    <option value="-10:00">UTC -10</option>
+                    <option value="-09:00">UTC -9</option>
+                    <option value="-08:00">UTC -8</option>
+                    <option value="-07:00">UTC -7</option>
+                    <option value="-06:00">UTC -6</option>
+                    <option value="-05:00">UTC -5</option>
+                    <option value="-04:00">UTC -4</option>
+                    <option value="-03:00">UTC -3</option>
+                    <option value="-02:00">UTC -2</option>
+                    <option value="-01:00">UTC -1</option>
+                    <option value="+00:00">UTC</option>
+                    <option value="+01:00">UTC +1</option>
+                    <option value="+02:00">UTC +2</option>
+                    <option value="+03:00">UTC +3</option>
+                    <option value="+04:00">UTC +4</option>
+                    <option value="+05:00">UTC +5</option>
+                    <option value="+06:00">UTC +6</option>
+                    <option value="+07:00">UTC +7</option>
+                    <option value="+08:00">UTC +8</option>
+                    <option value="+09:00">UTC +9</option>
+                    <option value="+10:00">UTC +10</option>
+                    <option value="+11:00">UTC +11</option>
+                    <option value="+12:00">UTC +12</option>
+                    <option value="+13:00">UTC +13</option>
+                </select>
+            </div>
+        </div>
+        <div class="bootstrap-timepicker">
+
+
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group form-inline">
+    <button class="btn btn-primary" data-bind="click: submit">
+        <span class="glyphicon glyphicon-time"></span> Submit
+    </button>
+</div>
+<hr />
+
+<div class="alert alert-success" role="alert" data-bind="visible: successMessage(), text: successMessage"></div>
+<div class="alert alert-danger" role="alert" data-bind="visible: errorMessage(), text: errorMessage"></div>
+<br />
+<br />
+<div class="form-group">
+    <fieldset>
+        <legend>RESULTS</legend>
+        <h3>
+            <label class="control-label">Records: <span data-bind="text: log().length"></span></label>
+</h3>
+        <table class="table  table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>NotificationId</th>
+                    <th>Platform</th>
+                    <th>Message</th>
+                    <th>TagExpression</th>
+                    <th>ScheduledOn</th>
+                    <th>CreatedOn</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: log.currentPageData">
+                <tr>
+                    <td data-bind="text: NotificationId"></td>
+                    <td data-bind="text: Platform"></td>
+                    <td data-bind="text: Message"></td>
+                    <td data-bind="text: TagExpression"></td>
+                    <td data-bind="text: ScheduledOn"></td>
+                    <td data-bind="text: CreatedOn"></td>
+                    <td>
+                        <button class="btn btn-default" data-bind="click: $parent.cancel, visible: CancelledOn() == null">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+            <div class="text-center">
+                <ul class="pagination">
+                    <li><a href="#" data-bind="click: log.movePrev">&laquo;</a></li>
+                    <!-- ko foreach: log.pageNumbers -->
+                    <li><a href="#" data-bind="text: $data, click: $parent.log.movePage.bind($data)"></a></li>
+                    <!-- /ko -->
+                    <li><a href="#" data-bind="click: log.moveNext">&raquo;</a></li>
+                </ul>
+            </div>
+</fieldset>
+    </div>
+        <script>
+            // Schedule タブの ViewModel を作成
+            var ScheduleViewModel = function () {
+                var self = this;
+
+                var _successMessage = ko.observable();
+                var _errorMessage = ko.observable();
+
+                self.successMessage = ko.computed({
+                    read: _successMessage,
+                    write: function (newValue) {
+                        _successMessage(newValue);
+                        _errorMessage(null);
+                    }
+                });
+                self.errorMessage = ko.computed({
+                    read: _errorMessage,
+                    write: function (newValue) {
+                        _errorMessage(newValue);
+                        _successMessage(null);
+                    }
+                });
+
+                self.windows = ko.observable("0");
+                self.windowsPhone = ko.observable("0");
+                self.ios = ko.observable("0");
+                self.android = ko.observable("0");
+
+                self.message = ko.observable();
+
+                var now = new Date();
+
+                self.scheduleDate = ko.observable(now.getFullYear() + "/" + (now.getMonth() + 1) + "/" + now.getDate());
+                self.scheduleTime = ko.observable();
+                self.scheduleTimeZone = ko.observable("+09:00");
+
+                self.tags = ko.observableArray();
+                self.tagExpression = ko.computed(function () {
+                    var expressions = [];
+
+                    $.each(self.tags(), function () {
+                        var key = this.key();
+                        var values = this.values().split(',');
+
+                        var subExpressions = [];
+
+                        $.each(values, function () {
+                            subExpressions.push(key + ":" + this);
+                        });
+
+                        expressions.push((this.exclude() ? "!" : "") + "(" + subExpressions.join(" || ") + ")");
+                    });
+
+                    return expressions.join(" && ");
+                });
+
+                self.log = ko.observableArray().extend({ paging: 20 });
+
+                self.submit = function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/schedule",
+                        data: {
+                            message: self.message(),
+                            tagExpression: self.tagExpression(),
+                            scheduledOn: self.scheduleDate() + " " + self.scheduleTime() + " " + self.scheduleTimeZone(),
+                            windows: self.windows(),
+                            windowsPhone: self.windowsPhone(),
+                            apple: self.ios(),
+                            android: self.android()
+                        }
+                    }).done(function () {
+                        self.message("");
+
+                        self.refresh();
+
+                        self.successMessage("scheduling success");
+                    }).fail(function (xhr) {
+                        var response = JSON.parse(xhr.responseText);
+
+                        self.errorMessage(response.ExceptionMessage || response.Message);
+                    });
+                };
+
+                self.cancel = function (data) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/api/schedule",
+                        data: {
+                            scheduledNotificationId: data.NotificationId()
+                        }
+                    }).done(function (item) {
+                        self.successMessage(data.NotificationId() + " is cancelled");
+
+                        data.CancelledOn(item.CancelledOn);
+                    }).fail(function (xhr) {
+                        var response = JSON.parse(xhr.responseText);
+
+                        self.errorMessage(response.ExceptionMessage || response.Message);
+                    });
+                };
+
+                self.addTag = function () {
+                    self.tags.push({
+                        key: ko.observable(""),
+                        values: ko.observable(""),
+                        exclude: ko.observable(false)
+                    });
+                };
+
+                self.deleteTag = function (data) {
+                    self.tags.remove(data);
+                };
+
+                self.refresh = function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/schedule"
+                    }).done(function (result) {
+                        self.log([]);
+
+                        $.each(result, function () {
+                            self.log.push(ko.mapping.fromJS(this));
+                        });
+                    }).fail(function (xhr) {
+                        var response = JSON.parse(xhr.responseText);
+
+                        self.errorMessage(response.ExceptionMessage);
+                    });
+                };
+
+                // 送信ログを非同期で取得
+                self.refresh();
+            };
+        </script>

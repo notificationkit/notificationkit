@@ -1,0 +1,50 @@
+﻿
+<h1>NotificationKit</h1>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#registration" role="tab" data-toggle="tab">Registration Devices</a></li>
+    <li><a href="#send" role="tab" data-toggle="tab">Send Notification</a></li>
+    @if (AppSettings.UseStandardTier.AsBool(false))
+    {
+        <li><a href="#schedule" role="tab" data-toggle="tab">Schedule Notification</a></li>
+    }
+</ul>
+
+<div class="tab-content aux-tabcontent">
+    <div class="tab-pane active" id="registration" data-bind="with: registration">
+        @Html.Partial("_Registration")
+    </div>
+    <div class="tab-pane" id="send" data-bind="with: send">
+        @Html.Partial("_Send")
+    </div>
+    <div class="tab-pane" id="schedule" data-bind="with: schedule">
+        @Html.Partial("_Schedule")
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        // ページ全体の ViewModel を作成
+        var viewModel = {
+            registration: new RegistrationViewModel(),
+            send: new SendViewModel(),
+            schedule: new ScheduleViewModel()
+        };
+
+        // ViewModel をバインディング
+        ko.applyBindings(viewModel);
+
+        $(function() {
+            $("input.date").datepicker({
+                format: "yyyy/mm/dd",
+            });
+
+            $("input.time").timepicker({
+                showMeridian: false,
+                showSeconds: true,
+                minuteStep: 1
+            });
+        });
+    </script>
+}

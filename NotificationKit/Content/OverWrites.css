@@ -1,0 +1,48 @@
+﻿.aux-tabcontent{
+    margin-top:30px;
+    margin-left:10px;
+}
+
+.aux-formgroup {
+
+    margin-bottom:50px;
+}
+.aux-checkbox{
+
+  width:20px;
+  height:20px;
+  border:2px solid #19283C;
+  border-radius:2px;
+  background:transparent;
+  opacity:0.5;
+ 
+}
+.aux-checkbox:checked{
+  background:#19283C;
+  opacity:1;
+}
+
+.aux-radio{
+ display:none;
+ margin:0;
+ vertical-align:middle;
+}
+
+.aux-radio +label{
+ width:100px;
+ min-height:40px;
+ cursor:default;
+ background-color:white;
+ border-width:2px;
+ border-color:#ccc;
+ border-style:solid;
+ text-align:center;
+padding:10px;
+margin:0;
+cursor:pointer;
+}
+    .aux-radio:checked + label {
+         background-color:#4f9dd7;
+         color:#FFF;
+    }
+

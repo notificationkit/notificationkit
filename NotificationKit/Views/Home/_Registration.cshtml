@@ -1,0 +1,332 @@
+﻿
+
+    <div class="form-group well">
+        <fieldset>
+            <legend>PLATFORMS</legend>
+            <div class="rows">
+                <div class="col-sm-12">
+                    <label class="checkbox-inline">
+                        <input  type="checkbox" data-bind="checked: windows" /> Windows
+                    </label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" data-bind="checked: windowsPhone" /> Windows Phone
+                    </label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" data-bind="checked: ios" /> iOS
+                    </label>
+                </div>
+                <div class="col-sm-12 ">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" data-bind="checked: android" /> Android
+                    </label>
+                </div>
+            
+            </div>
+        </fieldset>
+    </div>
+
+        <div class="form-group  well">
+            <fieldset>
+                <legend>TAGS</legend>
+
+                <div class="row">
+                    <div class=" col-xs-2 ">
+
+                    </div>
+                    <div class="col-xs-10 text-center">
+                        <div class="col-sm-2">
+                            <label>Key</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Values</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Exclude</label>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+
+                </div>
+                <!-- ko foreach: tags -->
+                <div  class="row">
+                    <div class="col-xs-2 text-center">
+                        <button style="margin:2px" class="btn btn-warning" data-bind="click: $parent.deleteTag">
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                    <div class="col-xs-10" style="vertical-align:bottom">
+
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" placeholder="KEY" data-bind="value: key" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" size="14" class="form-control" placeholder="VALUE" data-bind="value: values" />
+                        </div>
+                        <div class="col-sm-2 text-center">
+                          
+                       <input type="checkbox" class="aux-checkbox" data-bind="checked: exclude" />
+                             
+</div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <div class="row">
+                    <div class="col-xs-2 text-center">
+                        <button style="margin:2px" class="btn btn-success" data-bind="click: addTag">
+                            <span>Add</span>
+                        </button>
+                    </div>
+                    <div class="col-xs-10"></div>
+                </div>
+                <hr />
+                <div class="row text-center">
+  
+                </div>
+                <button class="col-1 btn btn-primary" data-bind="click: refresh">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </fieldset>
+
+
+        </div>
+ 
+
+<hr />
+<br />
+<br />
+    <div class="form-group ">
+    <fieldset>
+        <legend>DEVICES</legend>
+        <div>
+            <div class="form-group form-inline ">
+                <div class="col-xs-8">
+                    <h3><label class="control-label">Records: <span data-bind="text: filteredItems().length"></span></label></h3>
+                </div>
+                <div class="col-xs-4 text-right">
+
+                    <button class="col-sm-12 col-md-4 col-md-offset-4 btn btn-default" data-bind="click: exportCsv">
+                        <span class="glyphicon glyphicon-export"></span> Export
+                    </button>
+                    <button class="col-sm-12 col-md-4  btn btn-default" data-bind="click: importCsv">
+                        <span class="glyphicon glyphicon-import"></span> Import
+                    </button>
+                </div>
+            </div>
+
+            <div class="alert alert-success" role="alert" data-bind="visible: successMessage(), text: successMessage"></div>
+            <div class="alert alert-danger" role="alert" data-bind="visible: errorMessage(), text: errorMessage"></div>
+
+
+            <div class="">
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>RegistrationId</th>
+                                <th>Platform</th>
+                                <th>RegistrationTime</th>
+                                <th>Tags</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: filteredItems.currentPageData">
+                            <tr>
+                                <td data-bind="text: RegistrationId"></td>
+                                <td data-bind="text: Platform"></td>
+                                <td data-bind="text: ExpirationTime"></td>
+                                <td data-bind="text: Tags.join(' ')"></td>
+                                <td>
+                                    <button class="btn btn-default" data-bind="click: $parent.delete">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="text-center">
+                <ul class="pagination">
+                    <li><a href="#" data-bind="click: filteredItems.movePrev">&laquo;</a></li>
+                    <!-- ko foreach: filteredItems.pageNumbers -->
+                    <li><a href="#" data-bind="text: $data, click: $parent.filteredItems.movePage.bind($data)"></a></li>
+                    <!-- /ko -->
+                    <li><a href="#" data-bind="click: filteredItems.moveNext">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+</div>
+    <script>
+        // Registration タブの ViewModel を作成
+        var RegistrationViewModel = function () {
+            var self = this;
+
+            var _successMessage = ko.observable();
+            var _errorMessage = ko.observable();
+
+            self.successMessage = ko.computed({
+                read: _successMessage,
+                write: function (newValue) {
+                    _successMessage(newValue);
+                    _errorMessage(null);
+                }
+            });
+            self.errorMessage = ko.computed({
+                read: _errorMessage,
+                write: function (newValue) {
+                    _errorMessage(newValue);
+                    _successMessage(null);
+                }
+            });
+
+            self.windows = ko.observable(true);
+            self.windowsPhone = ko.observable(true);
+            self.ios = ko.observable(true);
+            self.android = ko.observable(true);
+
+            self.tags = ko.observableArray();
+            self.tagExpression = ko.computed(function () {
+                var expressions = [];
+
+                $.each(self.tags(), function () {
+                    var key = this.key();
+                    var values = this.values().split(',');
+
+                    var subExpressions = [];
+
+                    $.each(values, function () {
+                        subExpressions.push(key + ":" + this);
+                    });
+
+                    expressions.push((this.exclude() ? "!" : "") + "(" + subExpressions.join(" || ") + ")");
+                });
+
+                return expressions.join(" && ");
+            });
+
+            self.items = ko.observableArray();
+
+            self.filteredItems = ko.computed(function () {
+                return ko.utils.arrayFilter(self.items(), function (item) {
+                    if (self.windows() && item.Platform === "Windows") {
+                        return true;
+                    }
+                    if (self.windowsPhone() && item.Platform === "Windows Phone") {
+                        return true;
+                    }
+                    if (self.ios() && item.Platform === "iOS") {
+                        return true;
+                    }
+                    if (self.android() && item.Platform === "Android") {
+                        return true;
+                    }
+
+                    return false;
+                });
+            }).extend({ paging: 100 });
+
+            self.delete = function (data) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/registration",
+                    data: {
+                        registrationId: data.RegistrationId
+                    }
+                }).done(function () {
+                    self.items.remove(data);
+
+                    self.successMessage(data.RegistrationId + " is deleted");
+                }).fail(function (xhr) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    self.errorMessage(response.ExceptionMessage);
+                });
+            };
+
+            self.addTag = function () {
+                self.tags.push({
+                    key: ko.observable(""),
+                    values: ko.observable(""),
+                    exclude: ko.observable(false)
+                });
+            };
+
+            self.deleteTag = function (data) {
+                self.tags.remove(data);
+            };
+
+            self.importCsv = function () {
+                var file = $('<input type="file" name="csv" id="file" style="display: none;" />');
+
+                file.appendTo(document.body);
+
+                file.change(function () {
+                    $(this).upload("/api/batch", function (result) {
+                        if (result.Message) {
+                            self.errorMessage(result.Message);
+                        } else {
+                            self.successMessage(result);
+                        }
+
+                        self.refresh();
+                    }, "json");
+                });
+
+                file.click();
+            };
+
+            self.exportCsv = function () {
+                var platforms = [];
+
+                if (self.windows()) {
+                    platforms.push("Windows");
+                }
+
+                if (self.windowsPhone()) {
+                    platforms.push("Windows Phone");
+                }
+
+                if (self.ios()) {
+                    platforms.push("iOS");
+                }
+
+                if (self.android()) {
+                    platforms.push("Android");
+                }
+
+                window.open("/api/batch?platform=" + encodeURIComponent(platforms.join(",")) + "&expression=" + encodeURIComponent(self.tagExpression()));
+            };
+
+            self.refresh = function () {
+                var param = {};
+
+                var tagExpression = self.tagExpression();
+
+                if (tagExpression) {
+                    param["expression"] = tagExpression;
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: "/api/registration",
+                    data: param
+                }).done(function (result) {
+                    self.items(result);
+                }).fail(function (xhr) {
+                    var response = JSON.parse(xhr.responseText);
+
+                    self.errorMessage(response.ExceptionMessage);
+                });
+            };
+
+            // 登録済みデバイス ID を非同期で取得
+            self.refresh();
+        };
+    </script>
