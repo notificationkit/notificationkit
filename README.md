@@ -25,6 +25,5 @@
 
 #ƒhƒLƒ…ƒƒ“ƒg
 
-Documentation for notificationkit and related projects can be found online at the
-[notificationkit Docs site](http://docs.puppetlabs.com).
+[notificationkit Docs](https://github.com/notificationkit/notificationkit/tree/master/docs).
 
