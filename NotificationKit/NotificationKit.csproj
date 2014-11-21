@@ -258,6 +258,7 @@
     <None Include="Properties\PublishProfiles\notificationkit-sample.pubxml" />
     <None Include="Properties\PublishProfiles\NotificationKit-v2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
