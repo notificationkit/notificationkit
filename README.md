@@ -32,6 +32,7 @@ KitはパブリッククラウドであるMicrosoft Azureのプッシュ通知サービスをベースに実装
 このKitを利用するためにはAzureアカウントの作成が必要です。Azureアカウントをお持ちでない開発者は、下記のサイトから作成してください。
 
 Azure無料評価版
+
 http://azure.microsoft.com/ja-jp/pricing/free-trial/
 
 登録が完了すると以下のURLからAzure管理ポータルにアクセスできます。この管理ポータルからAzureの様々なサービスを利用することができます。
