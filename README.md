@@ -25,5 +25,5 @@
 
 #ドキュメント
 
-[ドキュメントはこちら](https://github.com/notificationkit/notificationkit/tree/master/docs).
+[利用方法はこちら](https://github.com/notificationkit/notificationkit/tree/master/docs).
 
