@@ -25,17 +25,17 @@
 
 #ドキュメント
 
-[利用方法はこちら](https://github.com/notificationkit/notificationkit/tree/master/docs).
+[利用方法の詳細](https://github.com/notificationkit/notificationkit/tree/master/docs).
 
 KitはパブリッククラウドであるMicrosoft Azureのプッシュ通知サービスをベースに実装されています。プッシュ通知サービスにはリアルタイム大量配信、データ管理、サービス監視など便利な機能が予め実装されているので、開発者はプッシュ通知に関わる全ての機能を実装する必要がありません。またKitにはプッシュ通知を管理するための、Webポータルが含まれているので管理用UIを開発する必要もありません。
  
-このKitを利用するためにはAzureアカウントの作成が必要です。
+このKitを利用するためにはAzureアカウントの作成が必要です。Azureアカウントをお持ちでない開発者は、下記のサイトから作成してください。
 
-Azureアカウントをお持ちでない開発者は、下記のサイトから作成してください。
 Azure無料評価版
 http://azure.microsoft.com/ja-jp/pricing/free-trial/
 
 登録が完了すると以下のURLからAzure管理ポータルにアクセスできます。この管理ポータルからAzureの様々なサービスを利用することができます。
+
 http://manage.windowsazure.com/
 
 
