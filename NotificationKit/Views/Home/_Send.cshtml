@@ -167,8 +167,6 @@
                         <th>Id</th>
                         <th>Message</th>
                         <th>TagExpression</th>
-                        <th>Success</th>
-                        <th>Failure</th>
                         <th>CreatedOn</th>
                     </tr>
                 </thead>
@@ -177,8 +175,8 @@
                         <td data-bind="text: Id"></td>
                         <td data-bind="text: Message"></td>
                         <td data-bind="text: TagExpression"></td>
-                        <td data-bind="text: Success"></td>
-                        <td data-bind="text: Failure"></td>
+                        <td style="display:none" data-bind="text: Success"></td>
+                        <td style="display:none" data-bind="text: Failure"></td>
                         <td data-bind="text: CreatedOn"></td>
                     </tr>
                 </tbody>
